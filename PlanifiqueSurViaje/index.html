@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+            <meta charset='utf-8' />
+            <link rel="stylesheet" href="build/kalendae.css" type="text/css" charset="utf-8">
+            <script src="build/kalendae.standalone.js" type="text/javascript" charset="utf-8"></script>
+            <script src="./script.js"></script>
+            <link rel="stylesheet" href="./style1.css" type="text/css" charset="utf-8"> 
+    </head>
+
+
+    <body>
+
+        <header>
+            <ul class="menu">
+                <li><img src="./recursos/logoGris.jpeg" alt="logo" style="width:15vh"></li>
+                <li><p>reserva 1234-5678</p></li>
+                <li><a href="./Comentarios.html" target="_blank">Tu opinión</a></li>
+                <li><button class="blueB" onclick="document.getElementById('id01').style.display='block'; show()" style="width:auto;">Iniciar sesión | Crear cuenta</button></li> 
+            </ul>
+            
+
+            <div id="id01" class="modal"> <!-- Login -->
+
+                
+
+                <div id="login" class="tabcontent">
+                    <form class="modal-content animate" action="/action_page.php">
+
+                        <div class="tab">
+                            <button class="tablinks" onclick="changeTab('t11', 'login')" id="t11">Ingresa a tu cuenta</button>
+                            <button class="tablinks" onclick="changeTab('t22', 'signUp')" id="t12">Crea tu cuenta</button>
+                        </div>
+
+                        <div class="imgcontainer">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar">&times;</span>
+                            <img src="./recursos/logoElipse.jpeg" alt="Avatar" class="avatar">
+                        </div>
+                    
+                        <div class="container">
+                            <label for="uname"><b>Usuario</b></label>
+                            <input type="text" placeholder="Ingrese su usuario" name="uname" required>
+                        
+                            <label for="psw"><b>Contraseña</b></label>
+                            <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
+                                
+                            <button type="submit" class="greenB">Iniciar sesión</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Recordarme
+                            </label>
+                        </div>
+                    
+                        <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="redB">Cancelar</button>
+                        <span class="psw">¿Olvidaste tu <a href="#">contraseña?</a></span>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="signUp" class="tabcontent">
+                    <form class="modal-content animate" action="/action_page.php">
+
+                        <div class="tab">
+                            <button class="tablinks" onclick="changeTab('t11', 'login')" id="t21">Ingresa a tu cuenta</button>
+                            <button class="tablinks" onclick="changeTab('t22', 'signUp')" id="t22">Crea tu cuenta</button>
+                        </div>
+
+                        <div class="imgcontainer">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar">&times;</span>
+                                <img src="./recursos/logoElipse.jpeg" alt="Avatar" class="avatar">
+                        </div>
+
+                        <div class="container">
+                            <p>Complete el formulario para crear su cuenta</p>
+                            <hr>
+                        
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="alguien@ejemplo.com" name="email" required>
+                        
+                            <label for="psw"><b>Contraseña</b></label>
+                            <input type="password" placeholder="********" name="psw" required>
+                        
+                            <label for="psw-repeat"><b>Repita su contraseña</b></label>
+                            <input type="password" placeholder="********" name="psw-repeat" required>
+                            
+                            <button type="submit" class="greenB">Registrarse</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> He leído y acepto los <a href="#" style="color:dodgerblue">Términos y condiciones</a> y el <a href="#" style="color:dodgerblue">Aviso de privacidad</a>
+                            </label> <hr>
+
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="redB">Cancelar</button>                        
+                        </div>
+                    </form>
+                </div>
+
+            </div> <!-- /Login -->
+        </header>
+
+        <div class="wrapper">
+            <div class="main">               
+                
+                <main>
+                    <h1>Planifique <span style="font-style: italic">SUR</span> viaje</h1>
+                    <p>Viajar es lindo, pero ocuparse de todos los detalles es complicado. Aquí centralizamos las decisiones en un solo lugar, para garantizar que su experiencia recorriendo el sur sea relajante desde el primer momento</p>
+                    <img src="./recursos/mountain.jpg" alt="montaña" height= "width / 2" width="60%">
+
+                    
+                        
+                        
+                    
+
+                    <section> <a name="Destino"></a>
+                        <h2>Elija un destino de los que ofrecemos</h2>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="opciones">
+                                <label for="">Opciones:</label>
+                                <input type="radio" name="opc" value="1" onchange="mostrar(this.value);">Bariloche
+                                <input type="radio" name="opc" value="2" onchange="mostrar(this.value);">Lago Puelo
+                                <input type="radio" name="opc" value="3" onchange="mostrar(this.value);">El Bolsón
+                                <input type="radio" name="opc" id="radionull"  style="display:none">
+                            </div>
+                        </form>
+                            
+                    </section> <hr>
+                    
+                    <section id="fechas"> <a name="Fecha"></a>
+                        <h2>Seleccione las fechas de salida y de retorno</h2>
+                        
+                        <p>Fecha de salida</p>
+                        <div id="salida" class="salida"></div>
+                        <script>
+                                var k = new Kalendae('salida', {
+                                    months:1,
+                                    mode:'single',
+                                    direction: 'today-future',                                    
+                                });
+                        
+                                k.subscribe('change', function (date) {
+                                    document.getElementById("fechaSidebar1").innerHTML = "Salida: " + this.getSelected() + "." ;
+                                            });
+                                
+                        </script>
+
+                        <div id="salida" class="salida"></div>
+                        <p>Fecha de retorno</p>
+                        <div id="vuelta" class="vuelta"></div>
+                        <script>
+                                var k = new Kalendae('vuelta', {
+                                    months:1,
+                                    mode:'single',
+                                    direction: 'future',
+                                });
+                        
+                                k.subscribe('change', function (date) {
+                                    document.getElementById("fechaSidebar2").innerHTML = "Retorno: " + this.getSelected() +"."
+                                            });
+                                
+                        </script>
+                        
+                    </section> <hr>
+
+                    <section> <a name="Transporte"></a>
+                        <h2>Elija como viajar</h2>
+
+                        <form>
+                            <p>Medio de transporte</p>
+
+                            <select name="Medio de transporte" id="tren">
+                                <option value="Micro">Micro</option>
+                                <option value="Avion">Avión</option>                                
+                            </select><br><br>
+
+                            <button class="fakeSubmit" type="button" onclick="transporte()">Confirmar</button>
+                        </form>
+                        
+
+                        <form style="display: none" id="trans">
+                            <p>Empresa</p>
+
+                            <select name="Medio de transporte" style="display: none" id="micros">
+                                <option value="ViaBariloche">Vía Bariloche</option>
+                                <option value="ElValle">El Valle</option>
+                                <option value="CruceroNorte">Crucero del Norte</option>
+                            </select>
+
+                            <select name="Medio de transporte" style="display: none" id="aviones">
+                                <option value="AerolineasArgentinas">Aerolíneas Argentinas</option>
+                                <option value="Latam">LATAM</option>
+                                <option value="Andes">Andes</option>
+                                <option value="Norwegian">Norwegian</option>
+                            </select><br>
+
+                            <button class="fakeSubmit" type="button" onclick="transporte2()">Confirmar</button>
+                        </form>
+                    </section> <hr>
+
+                    <div > <a name="Actividades"></a>
+                        <h2>Aqui le sugerimos algunas actividades para realizar durante su viaje</h2>
+
+                        <section id="ElijaDestino">
+                            <p>¡Primero elija su <a href="#Destino">Destino</a>!</p>
+                        </section>
+
+                        <section id="Bariloche" style="display: none">
+                            <h3>Actividades en Bariloche</h3>
+
+                            <h4>Circuito Chico <input type="checkbox" tag="checkboxActividades" id="11" value="Circuito Chico" onclick="checkActividades(1, 1)"></h4>
+                                <p>El Cicuito Chico es un recorrido por los alrededores de Bariloche, para conocer de cerca los atractivos más imponentes de la zona, entre ellos la península Llao Llao y el lago Moreno. (<a href="https://www.patagonia.com.ar/San+Carlos+de+Bariloche/337_Circuito+Chico.html" target="_blank">+ info</a>)</p>
+                            <h4>Circuito Grande por la ruta de los Siete Lagos <input type="checkbox" tag="checkboxActividades" id="12" value="Circuito Grande" onclick="checkActividades(2, 1)"></h4> 
+                                <p>El Circuito Grande desde Bariloche pasa por el Valle Encantado, con sus rocas de curiosas formas, la Confluencia, Villa Traful y el lago Correntoso, entre otros puntos. (<a href="https://www.patagonia.com.ar/San+Carlos+de+Bariloche/340_Circuito+Grande+por+la+ruta+de+los+Siete+Lagos.html" target="_blank">+ info</a>)</p>
+                            <h4>Paseos al cerro Tronador y cascada Los Alerces <input type="checkbox" tag="checkboxActividades" id="13" value="Tronador y cascada Los Alerces" onclick="checkActividades(3, 1)"></h4> 
+                                <p>Esta excursión en Bariloche recorre una de las más bellas zonas del Parque Nacional Nahuel Huapi y el cerro más alto del área: el Tronador. (<a href="https://www.patagonia.com.ar/San+Carlos+de+Bariloche/336_Paseos+al+cerro+Tronador+y+cascada+Los+Alerces.html" target="_blank">+ info</a>)</p>
+                            <h4>Fourtrax en Bariloche <input type="checkbox" tag="checkboxActividades" id="14" value="Fourtrax en Bariloche" onclick="checkActividades(4, 1)"></h4> 
+                                <p>Recorridos en Fourtrax es la propuesta de Bariloche para practicar en el cerro Catedral, sea en verano como en invierno. (<a href="https://www.patagonia.com.ar/San+Carlos+de+Bariloche/381_Fourtrax+en+Bariloche.html" target="_blank">+ info</a>)</p>
+                            <h4>Colonia Suiza en Bariloche <input type="checkbox" tag="checkboxActividades" id="15" value="Colonia Suiza" onclick="checkActividades(5, 1)"></h4> 
+                                <p>La Colonia Suiza en Bariloche es ideal para recorrer en un día o para acampantes. Son famosos su gastronomía y sus dulces caseros.  (<a href="https://www.patagonia.com.ar/San+Carlos+de+Bariloche/339_Colonia+Suiza+en+Bariloche.html" target="_blank">+ info</a>)</p>                            
+                            <h4>Bosque de Arrayanes e Isla Victoria <input type="checkbox" tag="checkboxActividades" id="16" value="Paseo en Catamarán" onclick="checkActividades(6, 1)"></h4> 
+                                <p>Una de las tradicionales excursiones en catamarán en Bariloche es la visita al Bosque de Arrayanes e isla Victoria.  (<a href="https://www.patagonia.com.ar/San+Carlos+de+Bariloche/341_Bosque+de+Arrayanes+e+Isla+Victoria.html" target="_blank">+ info</a>)</p>
+                        </section>
+
+                        <section id="LagoPuelo" style="display: none">
+                            <h3>Actividades en Lago Puelo</h3>  
+
+                            <h4>Pasarela del río azul <input type="checkbox" class="checkboxActividades" id="21" value="Pasarela del río azul" onclick="checkActividades(1, 2)"></h4> 
+                                <p>La Pasarela del Río Azul en Lago Puelo es el punto de partida de otros destinos como la laguna Huemul, el Lago Brisas y el Limite con Chile. (<a href="https://www.patagonia.com.ar/Lago+Puelo/106_Pasarela+del+r%C3%ADo+Azul.html" target="_blank">+info</a>)</p>
+                            <h4>Parque Nacional Lago Puelo <input type="checkbox" class="checkboxActividades" id="22" value="Parque Nacional Lago Puelo" onclick="checkActividades(2, 2)"></h4> 
+                                <p>El Parque Nacional Lago Puelo presenta un bosque andino patagónico alrededor de un lago de aguas turquesas, brindando el imponente marco de un lugar que encierra diversidad y belleza. (<a href="https://www.patagonia.com.ar/Lago+Puelo/107_Parque+Nacional+Lago+Puelo.html" target="_blank">+info</a>)</p>
+                            <h4>Trekking hasta Los Hitos <input type="checkbox" class="checkboxActividades" id="23" value="Trekking hasta Los Hitos" onclick="checkActividades(3, 2)"></h4> 
+                                <p>El trekking hasta Los Hitos en Lago Puelo es una verdadera aventura hacia el límite con Chile. (<a href="https://www.patagonia.com.ar/Lago+Puelo/108_Trekking+hasta+Los+Hitos.html" target="_blank">+info</a>)</p>
+                            <h4>Para recorrer en Puelo <input type="checkbox" class="checkboxActividades" id="24" value="Recorrer Lago Puelo" onclick="checkActividades(4, 2)"></h4> 
+                                <p>Tanto en invierno como en verano se pueden realizar recorridos para conocer todos los rincones de la comarca desde Lago Puelo. (<a href="https://www.patagonia.com.ar/Lago+Puelo/110_Para+recorrer+en+Puelo.html" target="_blank">+info</a>)</p>
+                            <h4>Parque Temático Millán Lemu <input type="checkbox" class="checkboxActividades" id="25" value="Parque Temático Millán Lemu" onclick="checkActividades(5, 2)"></h4> 
+                                <p>Un mundo lleno de fantasía lo espera en el Parque Temático Millán Lemu de Lago Puelo con seres mitológicos y de cuentos de hadas inmerso en un bosque con cascadas, arroyos y lagunas. (<a href="https://www.patagonia.com.ar/Lago+Puelo/877_Parque+Tem%C3%A1tico+Mill%C3%A1n+Lemu.html" target="_blank">+info</a>)</p>
+                            <h4>Desafío del Bosque <input type="checkbox" class="checkboxActividades" id="26" value="Desafío del Bosque" onclick="checkActividades(6, 2)"></h4> 
+                                <p>El Desafío del Bosque es un triatlón que se realiza en la localidad de Lago Puelo, Chubut. Consta de tres disciplinas: running, kayak sit o top y mountain bike. (<a href="https://www.patagonia.com.ar/Lago+Puelo/1026_Desaf%C3%ADo+del+Bosque.html" target="_blank">+info</a>)</p>
+                        </section>
+
+                        <section id="ElBolson" style="display: none">
+                            <h3>Actividades en El Bolsón</h3>
+
+                            <h4>El cajón del Azul, una vista que impacta <input type="checkbox" class="checkboxActividades" id="31" value="El cajón del Azul" onclick="checkActividades(1, 3)"></h4> 
+                                <p>El Cajón del Azul en El Bolsón es un lugar paradisíaco que deja impactados a todos los que realizan la excursión por la belleza del lugar. (<a href="https://www.patagonia.com.ar/El+Bols%C3%B3n/419_El+caj%C3%B3n+del+Azul%2C+una+vista+que+impacta.html" target="_blank">+ info</a>)</p>
+                            <h4>Circuito Mallín Ahogado en El Bolsón <input type="checkbox" class="checkboxActividades" id="32" value="Circuito Mallín Ahogado" onclick="checkActividades(2, 3)"></h4> 
+                                <p>En el Circuito Mallín Ahogado desde El Bolsón se pueden conocer, además de los atractivos paisajísticos, toda una comunidad agrícola y ganadera. (<a href="https://www.patagonia.com.ar/El+Bols%C3%B3n/420_Circuito+Mall%C3%ADn+Ahogado+en+El+Bols%C3%B3n.html" target="_blank">+ info</a>)</p>
+                            <h4>Loma del Medio - Cabeza Del Indio <input type="checkbox" class="checkboxActividades" id="33" value="Cabeza del Indio" onclick="checkActividades(3, 3)"></h4> 
+                                <p>Un circuito que lo llevará a conocer el valle de El Bolsón y la Cabeza del Indio, una formación rocosa producto de la erosión del viento sobre la montaña. (<a href="https://www.patagonia.com.ar/El+Bols%C3%B3n/421_Loma+del+Medio+-+Cabeza+Del+Indio.html" target="_blank">+ info</a>)</p>
+                            <h4>Cerro Amigo en El Bolsón <input type="checkbox" class="checkboxActividades" id="34" value="Cerro Amigo" onclick="checkActividades(4, 3)"></h4> 
+                                <p>El cerro Amigo está ubicado a 2 kilómetros del centro de El Bolsón y se puede acceder caminando o en auto. (<a href="https://www.patagonia.com.ar/El+Bols%C3%B3n/423_Cerro+Amigo+en+El+Bols%C3%B3n.html" target="_blank">+ info</a>)</p>
+                            <h4>Parapente en El Bolsón, para estar muy cerca del cielo <input type="checkbox" class="checkboxActividades" id="35" value="Parapente en El Bolsón" onclick="checkActividades(5, 3)"></h4> 
+                                <p>Uno de los mejores sitios para practicar parapente, una actividad para arriesgados, es el cerro Piltriquitrón en El Bolsón. (<a href="https://www.patagonia.com.ar/El+Bols%C3%B3n/426_Parapente+en+El+Bols%C3%B3n%2C+para+estar+muy+cerca+del+cielo.html" target="_blank">+ info</a>)</p>
+                            <h4>Camino de Los Nogales - Nahuelpan <input type="checkbox" class="checkboxActividades" id="36" value="Camino de Los Nogales" onclick="checkActividades(6, 3)"></h4> 
+                                <p>Desde EL Bolsón por la Ruta de Los Nogales se observan plantaciones de lúpulo, frutas finas, fábricas de quesos, tambos y demás. (<a href="https://www.patagonia.com.ar/El+Bols%C3%B3n/422_Camino+de+Los+Nogales+-+Nahuelpan.html" target="_blank">+ info</a>)</p>
+                            
+                        </section>
+
+                        
+                    </div> <!-- /actividades --> 
+                    <hr>
+                        
+                </main>
+            </div> <!-- /main-->
+
+                
+            
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <a href="#Destino">Destino:</a> <br><span id="destinoSidebar"></span>
+                    </li><br>
+                    <li>                        
+                        <a href="#Fecha">Fecha:</a> <br><span id="fechaSidebar1"></span> <span id="fechaSidebar2"></span>
+                    </li><br>
+                    <li>
+                        <a href="#Transporte">Transporte:</a> <br><span id="transporteSidebar"></span>
+                    <li><br>
+                        <a href="#Actividades">Actividades</a> <br>
+                        <span class="acSid" id="actividadesSidebar1" style="display: none"></span><br>
+                        <span class="acSid" id="actividadesSidebar2" style="display: none"></span><br>
+                        <span class="acSid" id="actividadesSidebar3" style="display: none"></span><br>
+                        <span class="acSid" id="actividadesSidebar4" style="display: none"></span><br>
+                        <span class="acSid" id="actividadesSidebar5" style="display: none"></span><br>
+                        <span class="acSid" id="actividadesSidebar6" style="display: none"></span><br>
+                    </li> 
+                </ul>      
+            </div> <!-- /sidebar-->
+        </div> <!-- /wrapper-->
+        <footer> <a name="Contacto"></a>
+                <h3>Ayúdanos a mejorar</h3>
+                <a href="./Comentarios.html" target="_blank">Tu opinión es importante</a>
+        </footer>
+    </body>
+
+</html>

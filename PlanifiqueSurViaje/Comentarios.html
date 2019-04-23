@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script>
+                    function idea() {                        
+                        document.getElementById("pregunta").innerHTML = "Diganos su idea";
+                    }
+                    function gusta() {                        
+                        document.getElementById("pregunta").innerHTML = "Diganos qué es lo que le gusta";
+                    }
+                    function nogusta() {                        
+                        document.getElementById("pregunta").innerHTML = "Diganos qué es lo que no le gusta";
+                    }
+            </script>
+            <link rel="stylesheet" href="./style1.css" type="text/css" charset="utf-8"> 
+    </head>
+
+    <body>
+        <form>
+            <div>
+            <fieldset class="popup">
+                <legend>¿Qué desea comunicarnos?</legend>           
+                <button onclick="idea(); return false;" class="blueB">Sugerencia</button> <button onclick="gusta(); return false;" class="greenB">Lo aprecio</button> <button onclick="nogusta(); return false;" class="redB">No me gusta</button>
+
+                <p id="pregunta">Diganos su idea</p>
+                <textarea id="subject" name="subject"  style="resize: none; height:200px; width:200px" required></textarea>
+
+                <p>Dirección de correo electrónico (opcional)</p>
+                <input type="text" style="width:200px" placeholder="alguien@ejemplo.com">
+                <br><br>
+                <input type="submit" value="Envíe su comentario">
+            </fieldset>
+            </div>
+        </form>
+    </body>
+
+</html>
